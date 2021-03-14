@@ -2,13 +2,19 @@ package org.ipo.rwa.userservice.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.io.Serializable;
 
 @Data
 @NoArgsConstructor
-@Document
-public class User {
+@ToString
+@Document(collection = "users")
+public class User implements Serializable {
 
+    @Id
     private String id;
     private String username;
     private String firstname;

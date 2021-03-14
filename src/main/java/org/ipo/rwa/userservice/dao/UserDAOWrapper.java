@@ -2,7 +2,7 @@ package org.ipo.rwa.userservice.dao;
 
 import org.ipo.rwa.userservice.bean.UserBean;
 import org.ipo.rwa.userservice.entity.User;
-import org.springframework.beans.BeanUtils;
+import org.ipo.rwa.userservice.utility.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -26,8 +26,8 @@ public class UserDAOWrapper {
                 .collect(Collectors.toList());
     }
 
-    public UserBean getUserById(final UserBean userBean) {
-        return this.convertEntityToBean(this.userRepository.findById(userBean.getId()).get());
+    public UserBean getUserById(final String id) {
+        return this.convertEntityToBean(this.userRepository.findById(id).get());
     }
 
     public UserBean saveUser(final UserBean userBean) {
@@ -38,19 +38,27 @@ public class UserDAOWrapper {
         return this.convertEntityToBean(this.userRepository.save(convertBeanToEntity(userBean)));
     }
 
-    public void deleteUser(final UserBean userBean) {
-        this.userRepository.delete(convertBeanToEntity(userBean));
+    public void deleteUserById(final String id) {
+        this.userRepository.deleteById(id);
     }
 
     private User convertBeanToEntity(final UserBean userBean) {
         User user = new User();
-        BeanUtils.copyProperties(userBean, user);
+        System.out.println("Received Document with Details: " + userBean);
+
+        BeanUtils.copyUserProperties(userBean, user);
+
+        System.out.println("Saving Document with Details: " + user);
         return user;
     }
 
     private UserBean convertEntityToBean(final User user) {
         UserBean userBean = new UserBean();
-        BeanUtils.copyProperties(user, userBean);
+        System.out.println("Found Document with Details: " + user);
+
+        BeanUtils.copyUserProperties(user, userBean);
+
+        System.out.println("Returning Document with Details: " + userBean);
         return userBean;
     }
 }

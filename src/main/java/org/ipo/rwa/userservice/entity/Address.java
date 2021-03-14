@@ -2,10 +2,14 @@ package org.ipo.rwa.userservice.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+import java.io.Serializable;
 
 @Data
 @NoArgsConstructor
-public class Address {
+@ToString
+public class Address implements Serializable {
     private String address1;
     private String address2;
     private String city;

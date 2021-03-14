@@ -2,10 +2,14 @@ package org.ipo.rwa.userservice.entity;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+import java.io.Serializable;
 
 @Data
 @NoArgsConstructor
-public class Company {
+@ToString
+public class Company implements Serializable {
     private String name;
     private String catchPhrase;
     private String bs;

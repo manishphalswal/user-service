@@ -2,12 +2,15 @@ package org.ipo.rwa.userservice.bean;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Data
 @NoArgsConstructor
-public class UserBean {
+@ToString
+public class UserBean implements Serializable {
 
     private String id;
     private String username;
@@ -17,7 +20,7 @@ public class UserBean {
     private String phone;
     private String email;
 
-    private AddressBean addressBean;
+    private AddressBean address;
 
     private String occupation;
     private String website;

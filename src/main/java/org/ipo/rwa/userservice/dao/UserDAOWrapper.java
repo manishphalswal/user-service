@@ -16,6 +16,7 @@ public class UserDAOWrapper {
 
     @Autowired
     public UserDAOWrapper(final IUserRepository userRepository) {
+        super();
         this.userRepository = userRepository;
     }
 
